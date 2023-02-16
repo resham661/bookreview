@@ -1,0 +1,15 @@
+<%
+=begin%>
+ <form action="<%= book_comments_path(@book) %>" method="post">
+  <input type="hidden" name="authenticity_token">
+
+  <textarea name="comment[content]" rows="6" cols="20"></textarea>  
+  <input type="submit" value="Submit">
+</form>  
+<%
+=end%>
+
+<%= simple_form_for([@book, @book.comments.build]) do |f| %>
+  <%= f.input :content %>
+  <%= f.button :submit %>
+<% end %> 

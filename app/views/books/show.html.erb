@@ -3,9 +3,16 @@
 <h4>Category: <%= @book.category.name %></h4>
 <p><%= @book.description %></p>
 
-<%= link_to "Back", root_path %>
-
 <% if user_signed_in? %>
+  <p>
+    <strong>Comments:</strong> 
+    <%= turbo_frame_tag "frame1" do%> 
+      <%= button_to "Add Comment", new_book_comment_path(@book), :method => :get %>
+    <% end %>
+    <%= render @book.comments %>
+  </p>
+
+  <%= link_to "Back", root_path %>
 
   <% if @book.user_id == current_user.id %>
     
@@ -14,7 +21,6 @@
       turbo_method: :delete,
       turbo_confirm: "Are you sure?"
     } %>
-
   <% end %>
   
 <% end %>
