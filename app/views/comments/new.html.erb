@@ -1,7 +1,10 @@
 <div>
   <h4>Add Comment</h4>
-  <%= render 'form' %>
-  
+  <%= turbo_frame_tag "form1" do%>
+    <%= render 'form' %>
+  <% end %>
+</div>
+
 <%
 =begin%>
 <div id="update_form">  
@@ -13,4 +16,3 @@
 </div>   
 <%
 =end%>
-

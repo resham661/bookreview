@@ -6,17 +6,19 @@
 <% if user_signed_in? %>
   <p>
     <strong>Comments:</strong> 
+    
+    <div id="update_form">
+      <%= turbo_frame_tag "form1" do %>
+        <button class="button button1"><%= link_to "Add comment", new_book_comment_path(@book) %></button>
+      <% end %> 
+    </div> 
     <%
 =begin%>
- <%= turbo_frame_tag "form1" do %>
-      <button><%= link_to "Add comment", new_book_comment_path(@book) %></button>
-    <% end %> 
+ <div id="update_form">
+      <%= render partial: "comments/form" ,locals: {book: @book} %>
+    </div>   
 <%
 =end%>
-  
-    <div id="update_form">
-      <%= render partial: "comments/form" ,locals: {book: @book} %>
-    </div>  
 
     <div id="new_comment">
       <%= render @book.comments.order(id: :desc) %>
