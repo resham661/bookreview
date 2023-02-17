@@ -1,4 +1,16 @@
-<h4>Add Comment</h4>
-<%= turbo_frame_tag "frame1" do%> 
+<div>
+  <h4>Add Comment</h4>
   <%= render 'form' %>
-<% end %>
+  
+<%
+=begin%>
+<div id="update_form">  
+  <div>
+      <%= turbo_frame_tag "frame1" do %>
+        <%= render 'form', locals: {book: @book} %>
+      <% end %>
+  </div>
+</div>   
+<%
+=end%>
+

@@ -12,7 +12,12 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
 
     if @comment.save
-      redirect_to book_path(@book)
+
+      render turbo_stream: [
+        turbo_stream.update('update_form', partial: "comments/form", locals: {book: @book}),
+        turbo_stream.append('new_comment', partial: 'comments/comment', locals: { comment: @comment })
+      ]
+      # redirect_to book_path(@book)
     else
       # flash[:notice] = @comment.errors.full_messages.to_sentence
       render 'new'
